@@ -66,44 +66,57 @@ nav.solid .btn-book-nav{background:var(--dark)!important;color:var(--white)!impo
   position:fixed;inset:0;z-index:400;
   background:rgba(0,0,0,0);
   pointer-events:none;
-  transition:background .4s;
+  transition:background .45s;
   display:flex;align-items:center;justify-content:center;
 }
-.book-overlay.open{background:rgba(0,0,0,.75);pointer-events:all}
+.book-overlay.open{background:rgba(0,0,0,.78);pointer-events:all}
 .book-panel{
-  width:min(860px,92vw);
-  transform:translateY(30px);
+  width:min(900px,92vw);
+  transform:translateY(20px);
   opacity:0;
-  transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .4s;
+  transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .45s;
   pointer-events:none;
+  position:relative;
 }
 .book-overlay.open .book-panel{transform:translateY(0);opacity:1;pointer-events:all}
 .book-bar{
   display:flex;align-items:stretch;
   background:var(--white);
-  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  box-shadow:0 40px 100px rgba(0,0,0,.5);
 }
 .book-label{
-  padding:1rem 1.4rem;
+  padding:1.1rem 1.6rem;
   font-family:'Playfair Display',serif;
-  font-size:1rem;font-weight:700;color:var(--dark);
+  font-size:1.05rem;font-weight:700;color:var(--dark);
   white-space:nowrap;display:flex;align-items:center;
   border-right:1px solid rgba(0,0,0,.1);flex-shrink:0;
 }
-.book-sep{width:1px;background:rgba(0,0,0,.1);flex-shrink:0}
-.book-field{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;flex:1;min-width:0}
-.book-ico{font-size:.9rem;opacity:.45;flex-shrink:0}
-.book-input{border:none;outline:none;background:none;font-size:.8rem;color:var(--dark);font-family:'Inter',sans-serif;width:100%;cursor:pointer}
-.book-input::placeholder{color:rgba(0,0,0,.38)}
-.book-arrow{font-size:.7rem;color:rgba(0,0,0,.22);flex-shrink:0}
+.book-sep{width:1px;background:rgba(0,0,0,.09);flex-shrink:0}
+.book-field{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;flex:1;min-width:0;position:relative}
+.book-ico{font-size:.88rem;opacity:.4;flex-shrink:0}
+.book-input{border:none;outline:none;background:none;font-size:.8rem;color:var(--dark);font-family:'Inter',sans-serif;width:100%;cursor:pointer;min-width:0}
+.book-input::placeholder{color:rgba(0,0,0,.35)}
+.book-input[type=date]{color:rgba(0,0,0,.5)}
+.book-arrow{font-size:.68rem;color:rgba(0,0,0,.2);flex-shrink:0}
 .book-select{border:none;outline:none;background:none;font-size:.8rem;color:var(--dark);font-family:'Inter',sans-serif;-webkit-appearance:none;width:100%;cursor:pointer}
-.book-btn{background:var(--dark);color:var(--white);padding:.9rem 1.4rem;font-size:.66rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;line-height:1.5;border:none;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;flex-shrink:0;text-align:center;transition:background .3s}
+.book-btn{
+  background:var(--dark);color:var(--white);
+  padding:.9rem 1.6rem;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;line-height:1.55;
+  border:none;cursor:pointer;font-family:'Inter',sans-serif;
+  white-space:nowrap;flex-shrink:0;text-align:center;
+  transition:background .3s;
+}
 .book-btn:hover{background:var(--accent)}
 .book-close{
-  display:flex;justify-content:flex-end;margin-bottom:.8rem;
+  position:absolute;top:-2.8rem;right:0;
 }
-.book-close-btn{background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer;opacity:.7;transition:opacity .2s;line-height:1;padding:.3rem}
-.book-close-btn:hover{opacity:1}
+.book-close-btn{
+  background:none;border:none;color:var(--white);
+  font-size:2rem;cursor:pointer;opacity:.65;
+  transition:opacity .2s,transform .2s;line-height:1;padding:.2rem;
+}
+.book-close-btn:hover{opacity:1;transform:rotate(90deg)}
 
 /* ── STATS ── */
 .stats{background:var(--dark);color:var(--white);display:flex;justify-content:space-around;align-items:center;padding:2.2rem 2.5rem;flex-wrap:wrap;gap:1rem;overflow:hidden}
@@ -167,24 +180,40 @@ nav.solid .btn-book-nav{background:var(--dark)!important;color:var(--white)!impo
 .g-sm{width:210px;height:270px}
 
 /* ── FEATURES ── */
-.features{background:var(--dark);padding:5rem 2.5rem;overflow:hidden}
+.features{background:#111;padding:5rem 2.5rem;overflow:hidden}
 .feat-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
-.feat-sub{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.38);max-width:360px}
+.feat-sub{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.45);max-width:360px}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.feat-card{padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;transition:background .5s}
+.feat-card{
+  padding:2.8rem 2.2rem;
+  border-right:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+  transition:background .5s,border-color .4s;
+  cursor:default;
+}
 .feat-card:nth-child(3n){border-right:none}
 .feat-card:nth-child(4),.feat-card:nth-child(5),.feat-card:nth-child(6){border-bottom:none}
-.feat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,168,130,.1),transparent);opacity:0;transition:opacity .5s}
-.feat-card:hover::before{opacity:1}
-.feat-card:hover{background:rgba(255,255,255,.03)}
-.feat-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.feat-card:hover{background:rgba(200,168,130,.07);border-color:rgba(200,168,130,.2)}
+/* shimmer sweep */
+.feat-card::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(200,168,130,.06),transparent);
+  transition:left .7s;
+}
+.feat-card:hover::before{left:150%}
+/* bottom accent line */
+.feat-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(to right,var(--accent),transparent);transition:width .6s cubic-bezier(.16,1,.3,1)}
 .feat-card:hover::after{width:100%}
-.feat-n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:rgba(255,255,255,.05);display:block;margin-bottom:.4rem;transition:color .5s}
-.feat-card:hover .feat-n{color:rgba(200,168,130,.18)}
-.feat-title{font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:.7rem;transition:color .3s}
+.feat-icon{font-size:1.6rem;display:block;margin-bottom:1rem;transition:transform .4s}
+.feat-card:hover .feat-icon{transform:scale(1.15) rotate(-5deg)}
+.feat-n{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:rgba(255,255,255,.06);display:block;margin-bottom:.5rem;transition:color .5s;line-height:1}
+.feat-card:hover .feat-n{color:rgba(200,168,130,.22)}
+.feat-title{font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:.8rem;transition:color .3s}
 .feat-card:hover .feat-title{color:var(--accent)}
-.feat-body{font-size:.82rem;line-height:1.78;color:rgba(255,255,255,.38);transition:color .3s}
-.feat-card:hover .feat-body{color:rgba(255,255,255,.65)}
+.feat-body{font-size:.83rem;line-height:1.8;color:rgba(255,255,255,.45);transition:color .3s}
+.feat-card:hover .feat-body{color:rgba(255,255,255,.72)}
 
 /* ── BOOKING SECTION ── */
 .booking{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
@@ -208,23 +237,32 @@ nav.solid .btn-book-nav{background:var(--dark)!important;color:var(--white)!impo
 .btn-submit span{position:relative;z-index:1}
 
 /* ── LOCATION ── */
-.location{background:var(--white);padding:5rem 2.5rem}
-.loc-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto}
-.loc-text{display:flex;flex-direction:column;justify-content:center}
-.loc-right{display:flex;flex-direction:column;gap:12px}
-.loc-map-box{position:relative;border-radius:2px;overflow:hidden;height:280px;box-shadow:0 20px 50px rgba(0,0,0,.12)}
-.loc-map-box iframe{width:100%;height:100%;border:none;filter:saturate(.75) contrast(1.05)}
-.loc-img-box{position:relative;overflow:hidden;height:190px;border-radius:2px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.loc-img-box img{width:100%;height:100%;object-fit:cover;display:block;animation:kenC 18s ease-in-out infinite alternate}
-@keyframes kenC{from{transform:scale(1) translate(0,1%)}to{transform:scale(1.07) translate(1%,-1%)}}
-.loc-img-box:hover img{animation-play-state:paused}
-.nearby{margin-top:1rem}
-.nearby-row{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:.84rem;transition:padding-left .3s;cursor:default}
+.location{background:var(--bg);padding:5rem 2.5rem}
+.loc-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1200px;margin:0 auto}
+.loc-text{display:flex;flex-direction:column;justify-content:center;padding-top:1rem}
+.loc-right{display:flex;flex-direction:column;gap:0}
+.loc-map-box{
+  position:relative;border-radius:4px;overflow:hidden;
+  height:380px;
+  box-shadow:0 30px 70px rgba(0,0,0,.15),0 0 0 1px rgba(0,0,0,.06);
+}
+.loc-map-box iframe{width:100%;height:100%;border:none;filter:saturate(.7) contrast(1.08) brightness(.97)}
+.loc-map-caption{
+  margin-top:1.2rem;
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.72rem;letter-spacing:.06em;color:var(--mid);
+}
+.loc-map-pin{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.loc-map-addr{font-style:italic}
+.nearby{margin-top:1.5rem}
+.nearby-row{display:flex;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:.84rem;transition:padding-left .3s;cursor:default}
 .nearby-row:last-child{border-bottom:none}
-.nearby-row:hover{padding-left:8px}
+.nearby-row:hover{padding-left:10px}
 .nearby-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;transition:transform .3s}
 .nearby-row:hover .nearby-dot{transform:scale(1.6)}
-.nearby-dist{margin-left:auto;font-size:.7rem;font-weight:600;color:var(--accent)}
+.nearby-name{flex:1}
+.nearby-mode{font-size:.65rem;color:var(--mid);margin-right:.5rem}
+.nearby-dist{font-size:.72rem;font-weight:600;color:var(--accent);min-width:40px;text-align:right}
 
 /* ── FOOTER ── */
 footer{background:var(--dark);color:rgba(255,255,255,.38);padding:2.8rem 2.5rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
@@ -250,9 +288,8 @@ footer{background:var(--dark);color:rgba(255,255,255,.38);padding:2.8rem 2.5rem;
   .feat-card:nth-child(n){border-right:none}
   .frow{grid-template-columns:1fr}
   .location{padding:3rem 1.5rem}
-  .loc-inner{grid-template-columns:1fr;gap:2rem}
-  .loc-map-box{height:220px}
-  .loc-img-box{height:150px}
+  .loc-inner{grid-template-columns:1fr;gap:2.5rem}
+  .loc-map-box{height:260px}
   footer{grid-template-columns:1fr;text-align:center}
   .foot-right{text-align:center}
   body{cursor:auto}
@@ -425,12 +462,12 @@ footer{background:var(--dark);color:rgba(255,255,255,.38);padding:2.8rem 2.5rem;
     <p class="feat-sub rv d2">Pensado para el viajero moderno que busca algo más que un lugar donde dormir.</p>
   </div>
   <div class="feat-grid">
-    <div class="feat-card rv d1"><span class="feat-n">01</span><p class="feat-title">Pagos Internacionales</p><p class="feat-body">Visa & Mastercard de cualquier país. Seguridad 3DS completa para huéspedes extranjeros sin complicaciones.</p></div>
-    <div class="feat-card rv d2"><span class="feat-n">02</span><p class="feat-title">Check-in Autónomo</p><p class="feat-body">Guía de llegada en tu idioma. Acceso inteligente sin esperas, a cualquier hora del día o la noche.</p></div>
-    <div class="feat-card rv d3"><span class="feat-n">03</span><p class="feat-title">Totalmente Equipado</p><p class="feat-body">Cocina completa, WiFi de alta velocidad, ropa de cama premium y zona de trabajo para profesionales.</p></div>
-    <div class="feat-card rv d4"><span class="feat-n">04</span><p class="feat-title">Ubicación Privilegiada</p><p class="feat-body">A pasos de Plaza de Armas, La Moneda y los mejores restaurantes del centro histórico de Santiago.</p></div>
-    <div class="feat-card rv d5"><span class="feat-n">05</span><p class="feat-title">Multiidioma</p><p class="feat-body">Atención y guías disponibles en English, Português y 中文. Todos los huéspedes bienvenidos.</p></div>
-    <div class="feat-card rv d6"><span class="feat-n">06</span><p class="feat-title">Factura Empresarial</p><p class="feat-body">Emitimos boleta o factura oficial chilena para estadías corporativas sin complicaciones.</p></div>
+    <div class="feat-card rv d1"><span class="feat-icon">💳</span><span class="feat-n">01</span><p class="feat-title">Pagos Internacionales</p><p class="feat-body">Visa & Mastercard de cualquier país. Seguridad 3DS completa para huéspedes extranjeros sin complicaciones.</p></div>
+    <div class="feat-card rv d2"><span class="feat-icon">🔑</span><span class="feat-n">02</span><p class="feat-title">Check-in Autónomo</p><p class="feat-body">Guía de llegada en tu idioma. Acceso inteligente sin esperas, a cualquier hora del día o la noche.</p></div>
+    <div class="feat-card rv d3"><span class="feat-icon">🛋️</span><span class="feat-n">03</span><p class="feat-title">Totalmente Equipado</p><p class="feat-body">Cocina completa, WiFi de alta velocidad, ropa de cama premium y zona de trabajo para profesionales.</p></div>
+    <div class="feat-card rv d4"><span class="feat-icon">📍</span><span class="feat-n">04</span><p class="feat-title">Ubicación Privilegiada</p><p class="feat-body">A pasos de Plaza de Armas, La Moneda y los mejores restaurantes del centro histórico de Santiago.</p></div>
+    <div class="feat-card rv d5"><span class="feat-icon">🌍</span><span class="feat-n">05</span><p class="feat-title">Multiidioma</p><p class="feat-body">Atención y guías disponibles en English, Português y 中文. Todos los huéspedes bienvenidos.</p></div>
+    <div class="feat-card rv d6"><span class="feat-icon">🧾</span><span class="feat-n">06</span><p class="feat-title">Factura Empresarial</p><p class="feat-body">Emitimos boleta o factura oficial chilena para estadías corporativas sin complicaciones.</p></div>
   </div>
 </section>
 
@@ -467,19 +504,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.38);padding:2.8rem 2.5rem;
       <h2 class="sec-title rv d1">Santiago<br><em>a tus pies</em></h2>
       <p class="sec-desc rv d2">En el corazón del centro histórico, rodeado de cultura, gastronomía y los principales puntos de interés de la ciudad.</p>
       <div class="nearby rv d3">
-        <div class="nearby-row"><span class="nearby-dot"></span>Plaza de Armas<span class="nearby-dist">3 min</span></div>
-        <div class="nearby-row"><span class="nearby-dot"></span>La Moneda<span class="nearby-dist">8 min</span></div>
-        <div class="nearby-row"><span class="nearby-dot"></span>Metro Santa Ana<span class="nearby-dist">2 min</span></div>
-        <div class="nearby-row"><span class="nearby-dot"></span>Mercado Central<span class="nearby-dist">5 min</span></div>
-        <div class="nearby-row"><span class="nearby-dot"></span>Aeropuerto SCL<span class="nearby-dist">35 min</span></div>
+        <div class="nearby-row"><span class="nearby-dot"></span><span class="nearby-name">Plaza de Armas</span><span class="nearby-mode">🚶</span><span class="nearby-dist">3 min</span></div>
+        <div class="nearby-row"><span class="nearby-dot"></span><span class="nearby-name">La Moneda</span><span class="nearby-mode">🚶</span><span class="nearby-dist">8 min</span></div>
+        <div class="nearby-row"><span class="nearby-dot"></span><span class="nearby-name">Metro Santa Ana</span><span class="nearby-mode">🚶</span><span class="nearby-dist">2 min</span></div>
+        <div class="nearby-row"><span class="nearby-dot"></span><span class="nearby-name">Mercado Central</span><span class="nearby-mode">🚶</span><span class="nearby-dist">5 min</span></div>
+        <div class="nearby-row"><span class="nearby-dot"></span><span class="nearby-name">Aeropuerto SCL</span><span class="nearby-mode">🚗</span><span class="nearby-dist">35 min</span></div>
       </div>
     </div>
     <div class="loc-right rv-r">
       <div class="loc-map-box">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.9!2d-70.6506!3d-33.4372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c59e67e1c4e3%3A0x4a7a8f1b5c6d2e9f!2sPlaza%20de%20Armas%2C%20Santiago!5e0!3m2!1ses!2scl!4v1680000000000!5m2!1ses!2scl" allowfullscreen="" loading="lazy"></iframe>
       </div>
-      <div class="loc-img-box">
-        <img src="https://images.unsplash.com/photo-1597006596834-d1a7d66dbf1e?w=800&q=85" alt="Santiago Centro">
+      <div class="loc-map-caption">
+        <span class="loc-map-pin"></span>
+        <span class="loc-map-addr">Santiago Centro, Región Metropolitana, Chile</span>
       </div>
     </div>
   </div>
