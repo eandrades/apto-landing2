@@ -105,17 +105,29 @@ nav.solid .btn-reservar{background:var(--dark)!important;color:var(--white)!impo
 .btn-outline:hover{color:var(--accent);border-color:var(--accent);padding-bottom:5px}
 
 /* ── GALLERY ── */
-.gallery{padding:5rem 2.5rem;background:var(--bg)}
-.gallery-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
-.gallery-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:320px 220px;gap:6px}
-.gimg{overflow:hidden;position:relative;cursor:pointer}
+.gallery{padding:5rem 0;background:var(--bg);overflow:hidden}
+.gallery-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;padding:0 2.5rem}
+.gallery-strip-wrap{position:relative;width:100%;overflow:hidden}
+.gallery-strip-wrap::before,.gallery-strip-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.gallery-strip-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.gallery-strip-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.gallery-track{display:flex;gap:10px;width:max-content;animation:galleryScroll 30s linear infinite}
+.gallery-track:hover{animation-play-state:paused}
+.gallery-track-2{animation:galleryScroll2 38s linear infinite;margin-top:10px}
+.gallery-track-2:hover{animation-play-state:paused}
+@keyframes galleryScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes galleryScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.gimg{overflow:hidden;position:relative;cursor:pointer;flex-shrink:0;border-radius:2px}
 .gimg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.4s}
-.gimg:hover::after{background:rgba(0,0,0,0.15)}
+.gimg:hover::after{background:rgba(0,0,0,0.12)}
 .gimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(.16,1,.3,1)}
-.gimg:hover img{transform:scale(1.08)}
-.gimg.tall{grid-row:1/3}
-.gimg-cap{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);font-size:0.63rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.9);transform:translateY(4px);transition:transform 0.3s;z-index:1}
-.gimg:hover .gimg-cap{transform:translateY(0)}
+.gimg:hover img{transform:scale(1.06)}
+.gimg-cap{position:absolute;bottom:0;left:0;right:0;padding:0.8rem 1rem;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.9);transform:translateY(6px);opacity:0;transition:transform 0.3s,opacity 0.3s;z-index:1}
+.gimg:hover .gimg-cap{transform:translateY(0);opacity:1}
+.gimg.size-tall{width:300px;height:380px}
+.gimg.size-wide{width:420px;height:280px}
+.gimg.size-sq{width:280px;height:280px}
+.gimg.size-sm{width:220px;height:280px}
 
 /* ── FEATURES ── */
 .features{background:var(--dark);padding:5rem 2.5rem;overflow:hidden}
@@ -199,9 +211,12 @@ body:hover .cursor-ring{opacity:1}
   .about,.booking,.location{grid-template-columns:1fr}
   .about-img,.booking-img,.location-img{min-height:280px}
   .about-text,.booking-form-wrap,.location-text{padding:3rem 1.5rem}
-  .gallery{padding:3rem 1.5rem}
-  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .gimg.tall{grid-row:auto}
+  .gallery{padding:3rem 0}
+  .gallery-header{padding:0 1.5rem}
+  .gimg.size-tall{width:200px;height:260px}
+  .gimg.size-wide{width:280px;height:200px}
+  .gimg.size-sq{width:200px;height:200px}
+  .gimg.size-sm{width:160px;height:200px}
   .feat-grid{grid-template-columns:1fr}
   .feat-card:nth-child(n){border-right:none}
   .form-row{grid-template-columns:1fr}
@@ -299,26 +314,52 @@ body:hover .cursor-ring{opacity:1}
       <h2 class="section-title reveal delay-1" style="font-size:2rem;margin-bottom:0">Cada rincón <em>pensado</em></h2>
     </div>
   </div>
-  <div class="gallery-grid">
-    <div class="gimg tall reveal-scale">
-      <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=85" alt="Living">
-      <div class="gimg-cap">Sala de estar</div>
+
+  <!-- STRIP 1 — left to right -->
+  <div class="gallery-strip-wrap">
+    <div class="gallery-track">
+      <!-- original set -->
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Living"><div class="gimg-cap">Sala de estar</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80" alt="Dormitorio"><div class="gimg-cap">Dormitorio</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=80" alt="Cocina"><div class="gimg-cap">Cocina</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Baño"><div class="gimg-cap">Baño</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80" alt="Escritorio"><div class="gimg-cap">Zona de trabajo</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&q=80" alt="Interior"><div class="gimg-cap">Interior</div></div>
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600&q=80" alt="Detalles"><div class="gimg-cap">Detalles</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=80" alt="Ambiente"><div class="gimg-cap">Ambiente</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Living"><div class="gimg-cap">Sala de estar</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80" alt="Dormitorio"><div class="gimg-cap">Dormitorio</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=80" alt="Cocina"><div class="gimg-cap">Cocina</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Baño"><div class="gimg-cap">Baño</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80" alt="Escritorio"><div class="gimg-cap">Zona de trabajo</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&q=80" alt="Interior"><div class="gimg-cap">Interior</div></div>
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600&q=80" alt="Detalles"><div class="gimg-cap">Detalles</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=80" alt="Ambiente"><div class="gimg-cap">Ambiente</div></div>
     </div>
-    <div class="gimg reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&q=85" alt="Dormitorio">
-      <div class="gimg-cap">Dormitorio</div>
-    </div>
-    <div class="gimg reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85" alt="Cocina">
-      <div class="gimg-cap">Cocina equipada</div>
-    </div>
-    <div class="gimg reveal delay-3">
-      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=85" alt="Baño">
-      <div class="gimg-cap">Baño</div>
-    </div>
-    <div class="gimg reveal delay-4">
-      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=85" alt="Escritorio">
-      <div class="gimg-cap">Espacio de trabajo</div>
+  </div>
+
+  <!-- STRIP 2 — right to left, different images -->
+  <div class="gallery-strip-wrap">
+    <div class="gallery-track gallery-track-2">
+      <!-- original set -->
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=80" alt="Terraza"><div class="gimg-cap">Ambiente</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=500&q=80" alt="Detalle"><div class="gimg-cap">Detalle</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=80" alt="Living"><div class="gimg-cap">Living</div></div>
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1597006596834-d1a7d66dbf1e?w=600&q=80" alt="Santiago"><div class="gimg-cap">Santiago Centro</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=80" alt="Espacio"><div class="gimg-cap">Espacio</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Baño"><div class="gimg-cap">Baño</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&q=80" alt="Noche"><div class="gimg-cap">Descanso</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80" alt="Escritorio"><div class="gimg-cap">Work space</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=80" alt="Terraza"><div class="gimg-cap">Ambiente</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=500&q=80" alt="Detalle"><div class="gimg-cap">Detalle</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=80" alt="Living"><div class="gimg-cap">Living</div></div>
+      <div class="gimg size-tall"><img src="https://images.unsplash.com/photo-1597006596834-d1a7d66dbf1e?w=600&q=80" alt="Santiago"><div class="gimg-cap">Santiago Centro</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=80" alt="Espacio"><div class="gimg-cap">Espacio</div></div>
+      <div class="gimg size-sm"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Baño"><div class="gimg-cap">Baño</div></div>
+      <div class="gimg size-sq"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&q=80" alt="Noche"><div class="gimg-cap">Descanso</div></div>
+      <div class="gimg size-wide"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80" alt="Escritorio"><div class="gimg-cap">Work space</div></div>
     </div>
   </div>
 </section>
